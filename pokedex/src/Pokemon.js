@@ -8,6 +8,15 @@ const Pokemon = ({ pokemonName }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Define extractEvolutions within useEffect to ensure it has the correct context
+    const extractEvolutions = (chain, evolutions = []) => {
+      evolutions.push(chain.species.name);
+      chain.evolves_to.forEach(evolvesToChain => {
+        extractEvolutions(evolvesToChain, evolutions);
+      });
+      return evolutions;
+    };
+
     const fetchPokemonData = async () => {
       setLoading(true);
       try {
@@ -28,12 +37,6 @@ const Pokemon = ({ pokemonName }) => {
 
     fetchPokemonData();
   }, [pokemonName]);
-
-  const extractEvolutions = (chain, evolutions = []) => {
-    evolutions.push(chain.species.name);
-    chain.evolves_to.forEach(evolvesToChain => extractEvolutions(evolvesToChain, evolutions));
-    return evolutions;
-  };
 
   if (loading) return <div className="Pokemon">Loading...</div>;
 
