@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import Pokemon from './Pokemon';
 
 function App() {
   return (
     <div className="App">
-      <p>Hello World!</p>
+      <Pokemon pokemonName="ditto" />
     </div>
   );
 }
