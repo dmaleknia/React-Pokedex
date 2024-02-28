@@ -5,7 +5,7 @@ import Pokemon from './Pokemon';
 function App() {
   return (
     <div className="App">
-      <Pokemon pokemonName="ditto" />
+      <Pokemon pokemonName="pikachu" />
     </div>
   );
 }
